@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 @RestController
 @SpringBootApplication
 public class DemoSimpleApiApplication {
@@ -15,7 +18,13 @@ public class DemoSimpleApiApplication {
 
     @GetMapping("/hello")
     public String greetMe(){
-        return "hello, let's practice Docker with K8s";
+
+        try {
+            return "Hostname : " + InetAddress.getLocalHost().getHostName();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return "Unkown";
     }
 
 }
