@@ -46,21 +46,3 @@ spec:
       port: 80
       targetPort: 8090
   type: NodePort
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: simeplapp-ingress
-  namespace: development
-spec:
-  rules:
-    - host: simpleapp.info
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: my-simple-app-service
-                port:
-                  number: 80
